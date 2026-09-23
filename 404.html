@@ -753,6 +753,7 @@ function decodeUrl(code) {
       font-family: var(--term-font);
       font-size: 13px;
       color: var(--term-text);
+      caret-color: var(--term-accent);
     }
 
     .cursor {
@@ -1002,8 +1003,7 @@ function decodeUrl(code) {
       </div>
       <div class="input-row">
         <span class="prompt">&gt;</span>
-        <input type="text" id="urlInput" value="" placeholder="https://..." autocomplete="off" spellcheck="false" />
-        <span class="cursor"></span>
+        <input type="text" id="urlInput" value="" placeholder="https://..." autocomplete="off" spellcheck="false" autofocus />
       </div>
 
       <div id="shortenedVectorSection" style="display: none;">
@@ -1328,6 +1328,9 @@ function decodeUrl(code) {
       urlInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') processUrl();
       });
+
+      urlInput.focus();
+      setTimeout(() => urlInput.focus(), 50);
     })();
   </script>
 </body>
