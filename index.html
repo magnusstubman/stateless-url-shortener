@@ -1006,6 +1006,14 @@ function decodeUrl(code) {
         <span class="cursor"></span>
       </div>
 
+      <div style="font-size: 12px; color: var(--term-accent); margin-bottom: 4px;">
+        [>>] SHORTENED IMMUTABLE VECTOR:
+      </div>
+      <div class="input-row">
+        <span class="prompt">&gt;</span>
+        <span id="finalLinkText" style="flex:1; font-size:13px; color:#ffffff; word-break:break-all; min-height:18px; line-height:18px; user-select:all;"></span>
+      </div>
+
       <button id="compressBtn" class="btn-ascii btn-action">[ == EXECUTE COMPRESSION == ]</button>
 
       <div id="outputSection" class="output-section">
@@ -1027,14 +1035,6 @@ function decodeUrl(code) {
             </tr>
           </tbody>
         </table>
-
-        <div style="font-size: 12px; color: var(--term-accent); margin-bottom: 4px;">
-          [>>] SHORTENED IMMUTABLE VECTOR:
-        </div>
-        <div class="input-row">
-          <span class="prompt">&gt;</span>
-          <span id="finalLinkText" style="flex:1; font-size:13px; color:#ffffff; word-break:break-all;"></span>
-        </div>
 
         <div style="display: flex; gap: 10px; margin-top: 10px;">
           <button id="copyBtn" class="btn-ascii" style="flex: 1;">[ COPY TO CLIPBOARD ]</button>
