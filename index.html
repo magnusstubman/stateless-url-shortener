@@ -951,7 +951,7 @@ function decodeUrl(code) {
             <tr>
               <th>ORIGINAL</th>
               <th>STREAM ENTROPY</th>
-              <th>SHORTENED</th>
+              <th>SHORTENED LINK</th>
               <th>NET REDUCTION</th>
             </tr>
           </thead>
@@ -1209,11 +1209,17 @@ function decodeUrl(code) {
 
         origLen.textContent = `${url.length} c`;
         bitLen.textContent = `${res.bits} b`;
-        shortLen.textContent = `${res.code.length} c`;
+        shortLen.textContent = `${shareLink.length} c`;
 
-        const diff = url.length - res.code.length;
-        const pct = ((diff / url.length) * 100).toFixed(1);
-        savingsVal.textContent = diff > 0 ? `-${pct}%` : `+${Math.abs(pct)}%`;
+        const diff = url.length - shareLink.length;
+        const pct = ((Math.abs(diff) / url.length) * 100).toFixed(1);
+        if (diff > 0) {
+          savingsVal.textContent = `-${pct}%`;
+        } else if (diff < 0) {
+          savingsVal.textContent = `+${pct}%`;
+        } else {
+          savingsVal.textContent = `0.0%`;
+        }
 
         finalLinkText.textContent = shareLink;
         outputSection.style.display = 'block';
