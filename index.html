@@ -939,7 +939,7 @@ function decodeUrl(code) {
       </div>
       <div class="input-row">
         <span class="prompt">&gt;</span>
-        <input type="text" id="urlInput" value="https://example.com/blog/lorem-ipsum" placeholder="https://..." autocomplete="off" spellcheck="false" />
+        <input type="text" id="urlInput" value="" placeholder="https://..." autocomplete="off" spellcheck="false" />
         <span class="cursor"></span>
       </div>
 
@@ -970,7 +970,7 @@ function decodeUrl(code) {
         </div>
         <div class="input-row">
           <span class="prompt">&gt;</span>
-          <span id="finalLinkText" style="flex:1; font-size:13px; color:#ffffff; word-break:break-all;">-</span>
+          <span id="finalLinkText" style="flex:1; font-size:13px; color:#ffffff; word-break:break-all;"></span>
         </div>
 
         <div style="display: flex; gap: 10px; margin-top: 10px;">
@@ -1198,7 +1198,11 @@ function decodeUrl(code) {
 
       function processUrl() {
         const url = urlInput.value.trim();
-        if (!url) return;
+        if (!url) {
+          finalLinkText.textContent = '';
+          outputSection.style.display = 'none';
+          return;
+        }
 
         const res = encodeUrl(url);
         const shareLink = `https://unpu.re/${res.code}`;
@@ -1241,8 +1245,6 @@ function decodeUrl(code) {
       urlInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') processUrl();
       });
-
-      processUrl();
     })();
   </script>
 </body>
