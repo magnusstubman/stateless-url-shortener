@@ -1006,12 +1006,14 @@ function decodeUrl(code) {
         <span class="cursor"></span>
       </div>
 
-      <div style="font-size: 12px; color: var(--term-accent); margin-bottom: 4px;">
-        [>>] SHORTENED IMMUTABLE VECTOR:
-      </div>
-      <div class="input-row">
-        <span class="prompt">&gt;</span>
-        <span id="finalLinkText" style="flex:1; font-size:13px; color:#ffffff; word-break:break-all; min-height:18px; line-height:18px; user-select:all;"></span>
+      <div id="shortenedVectorSection" style="display: none;">
+        <div style="font-size: 12px; color: var(--term-accent); margin-bottom: 4px;">
+          [>>] SHORTENED IMMUTABLE VECTOR:
+        </div>
+        <div class="input-row">
+          <span class="prompt">&gt;</span>
+          <span id="finalLinkText" style="flex:1; font-size:13px; color:#ffffff; word-break:break-all; min-height:18px; line-height:18px; user-select:all;"></span>
+        </div>
       </div>
 
       <button id="compressBtn" class="btn-ascii btn-action">[ == EXECUTE COMPRESSION == ]</button>
@@ -1243,6 +1245,7 @@ function decodeUrl(code) {
 
       const urlInput = document.getElementById('urlInput');
       const compressBtn = document.getElementById('compressBtn');
+      const shortenedVectorSection = document.getElementById('shortenedVectorSection');
       const outputSection = document.getElementById('outputSection');
       const origLen = document.getElementById('origLen');
       const bitLen = document.getElementById('bitLen');
@@ -1263,6 +1266,7 @@ function decodeUrl(code) {
         const url = urlInput.value.trim();
         if (!url) {
           finalLinkText.textContent = '';
+          shortenedVectorSection.style.display = 'none';
           outputSection.style.display = 'none';
           return;
         }
@@ -1285,6 +1289,7 @@ function decodeUrl(code) {
         }
 
         finalLinkText.textContent = shareLink;
+        shortenedVectorSection.style.display = 'block';
         outputSection.style.display = 'block';
 
         copyBtn.onclick = () => {
