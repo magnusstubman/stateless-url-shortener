@@ -1272,13 +1272,14 @@ function decodeUrl(code) {
         }
 
         const res = encodeUrl(url);
-        const shareLink = `https://unpu.re/${res.code}`;
+        const fullLink = `https://unpu.re/${res.code}`;
+        const displayLink = `unpu.re/${res.code}`;
 
         origLen.textContent = `${url.length} c`;
         bitLen.textContent = `${res.bits} b`;
-        shortLen.textContent = `${shareLink.length} c`;
+        shortLen.textContent = `${fullLink.length} c`;
 
-        const diff = url.length - shareLink.length;
+        const diff = url.length - fullLink.length;
         const pct = ((Math.abs(diff) / url.length) * 100).toFixed(1);
         if (diff > 0) {
           savingsVal.textContent = `-${pct}%`;
@@ -1288,16 +1289,16 @@ function decodeUrl(code) {
           savingsVal.textContent = `0.0%`;
         }
 
-        finalLinkText.textContent = shareLink;
+        finalLinkText.textContent = displayLink;
         shortenedVectorSection.style.display = 'block';
         outputSection.style.display = 'block';
 
         copyBtn.onclick = () => {
-          navigator.clipboard.writeText(shareLink).then(() => {
+          navigator.clipboard.writeText(displayLink).then(() => {
             showToast('[ OK: COPIED TO CLIPBOARD ]');
           }).catch(() => {
             const el = document.createElement('textarea');
-            el.value = shareLink;
+            el.value = displayLink;
             document.body.appendChild(el);
             el.select();
             document.execCommand('copy');
@@ -1308,7 +1309,7 @@ function decodeUrl(code) {
 
         testBtn.onclick = () => {
           if (window.location.hostname === 'unpu.re') {
-            window.open(shareLink, '_blank');
+            window.open(fullLink, '_blank');
           } else {
             window.open(window.location.href.split('#')[0].split('?')[0] + '#' + res.code, '_blank');
           }
